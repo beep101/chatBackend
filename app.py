@@ -2,10 +2,11 @@ from flask import Flask, request, g
 from flask_socketio import SocketIO, emit
 
 from sharedComponents import authService, msgsService
+from config import SECRET_KEY
 
 app=Flask("chapp")
 
-app.config['SECRET_KEY'] = 'secret'
+app.config['SECRET_KEY'] = SECRET_KEY
 socketio=SocketIO(app, cors_allowed_origins="*")
 
 
