@@ -1,7 +1,6 @@
 from flask import Blueprint, request
 
 from models import User
-
 from sharedComponents import authService, usersData
 
 authBlueprint=Blueprint("auth",__name__)

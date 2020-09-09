@@ -1,7 +1,6 @@
 from flask import Blueprint, request,g
 
 from models import User,iterableModelToJson
-
 from sharedComponents import usersData
 
 usersBlueprint = Blueprint("users",__name__)
