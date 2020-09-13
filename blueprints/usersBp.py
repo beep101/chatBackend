@@ -51,7 +51,7 @@ def addUser():
 def modUser(id):
     if(g.user["admin"] or g.user["id"]==id):
         if("passwd" in request.json):
-            request.json["passwd"]=passwd=authService.hashPassword(request.json["passwd"])
+            request.json["passwd"]=authService.hashPassword(request.json["passwd"])
         changeUser=usersData.getUserById(id)
         if(not changeUser):
             return "No resource", 204
