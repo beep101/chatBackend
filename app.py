@@ -17,8 +17,8 @@ from blueprints.authBp import authBlueprint
 
 
 app.register_blueprint(usersBlueprint, url_prefix='/users')
-app.register_blueprint(convsBlueprint, url_prefix='/convs')
-app.register_blueprint(msgsBlueprint, url_prefix='/msgs')
+app.register_blueprint(convsBlueprint, url_prefix='/conversations')
+app.register_blueprint(msgsBlueprint, url_prefix='/messages')
 app.register_blueprint(authBlueprint)
 
 @app.before_request
