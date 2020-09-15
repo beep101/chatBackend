@@ -24,3 +24,7 @@ def signup():
         return "Kreiran korsinik", 201
     else:
         return "Greska", 400
+
+@authBlueprint.route("/check",methods=['GET'])
+def check():
+    return "Authorized"
