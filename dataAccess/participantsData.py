@@ -102,6 +102,7 @@ class ParticipantsData:
     def addParticipantsToConv(self,convId,participants):
         session=makeSession()
         for participant in participants:
+            participant.conv=convId
             session.add(participant)
         check=True
         try:
