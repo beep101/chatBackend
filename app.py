@@ -25,6 +25,7 @@ app.register_blueprint(authBlueprint)
 def before_request():
     if request.path !="/login" and request.path !="/signup":
         print(request.path)
+        print(request.json)
         if(not request.headers.get('Authorization')):
             return "Unauthorized", 401
         g.user=authService.checkJwt(request.headers['Authorization'][7:])
