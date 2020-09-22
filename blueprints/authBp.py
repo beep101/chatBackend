@@ -7,6 +7,7 @@ authBlueprint=Blueprint("auth",__name__)
 
 @authBlueprint.route("/login",methods=['POST'])
 def login():
+    
     user=usersData.getUserByEmail(request.json['email'])
     if(user == None):
         return 'Pogresan email', 401
