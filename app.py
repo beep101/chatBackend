@@ -36,7 +36,7 @@ def connectUser():
 
 @socketio.on('authorize', namespace='/msgs')
 def authorizeUser(requestJson):
-    requestJson=json.dumps(requestJson)
+    requestJson=json.loads(requestJson)
     print(requestJson)
     user=authService.checkJwt(requestJson["token"])
     if(user):
@@ -52,7 +52,7 @@ def disconnectUser():
 
 @socketio.on('message', namespace='/msgs')
 def recieveMsg(requestJson):
-    requestJson=json.dumps(requestJson)
+    requestJson=json.loads(requestJson)
     print(requestJson)
     msgsService.addMessage(requestJson,request.sid)
     
