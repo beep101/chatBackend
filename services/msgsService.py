@@ -26,7 +26,13 @@ class MessagingService:
 
     def __notifyMessage(self,participants,message):
         for participant in participants:
-            emit('message',message,room=self.sessionByUser[participant.user])
+            session=None
+            try:
+                session=self.sessionByUser[participant.user]
+            except e:
+                session=None
+            if(session)
+                emit('message',message,room=session)
 
     def addUser(self,userId,sessionId):
         self.userBySession[sessionId]=userId
