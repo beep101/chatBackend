@@ -1,6 +1,8 @@
 from flask import Flask, request, g
 from flask_socketio import SocketIO, emit
 
+import json
+
 from sharedComponents import authService, msgsService
 from config import SECRET_KEY
 
@@ -24,8 +26,6 @@ app.register_blueprint(authBlueprint)
 @app.before_request
 def before_request():
     if request.path !="/login" and request.path !="/signup":
-        print(request.path)
-        print(request.json)
         if(not request.headers.get('Authorization')):
             return "Unauthorized", 401
         g.user=authService.checkJwt(request.headers['Authorization'][7:])
@@ -36,7 +36,7 @@ def connectUser():
 
 @socketio.on('authorize', namespace='/msgs')
 def authorizeUser(requestJson):
-    print(requestJson)
+    requestJson=json.dumps(requestJson)
     user=authService.checkJwt(requestJson["token"])
     if(user):
         msgsService.addUser(user["id"],request.sid)
@@ -51,7 +51,7 @@ def disconnectUser():
 
 @socketio.on('message', namespace='/msgs')
 def recieveMsg(requestJson):
-    print(requestJson)
+    requestJson=json.dumps(requestJson)
     msgsService.addMessage(requestJson,request.sid)
     
 
