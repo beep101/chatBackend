@@ -103,8 +103,6 @@ def delConv(id):
 
 @convsBlueprint.route("/participant",methods=['POST'])
 def addParticipant():
-
-    print("adding")
     participant=Participant()
     participant.fromJson(request.json)
 

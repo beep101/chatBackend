@@ -31,8 +31,6 @@ class AuthService:
         salt=salthash[:16]
         savedPassword=salthash[16:]
         providedPassword=self.__hash(password,salt)
-        print(providedPassword)
-        print(savedPassword)
         if(savedPassword==providedPassword):
             return True
         else :

@@ -58,7 +58,6 @@ def modUser(id):
         changeUser.fromJson(request.json)
         changeUser.id=id
         changeUser=usersData.modUser(changeUser)
-        print(changeUser)
         if(changeUser):
             return changeUser.toJson()
         else:

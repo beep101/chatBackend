@@ -55,7 +55,6 @@ class ConvsData:
         try:
             session.commit()
         except Exception as e:
-            print("exc")
             session.rollback()
             session.flush()
             check=False
