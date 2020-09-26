@@ -31,7 +31,7 @@ class MessagingService:
                 session=self.sessionByUser[participant.user]
             except e:
                 session=None
-            if(session)
+            if(session):
                 emit('message',message,room=session)
 
     def addUser(self,userId,sessionId):
