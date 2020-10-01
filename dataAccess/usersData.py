@@ -9,6 +9,13 @@ class UsersData:
         session.close()
         return allUsers
 
+    def getAllUsersNoAdmin(self):
+        session=makeSession()
+        allUsers=session.query(User).filter(User.admin==False).all()
+        session.close()
+        return allUsers
+
+
     def getUserById(self,id):
         session=makeSession()
         user=session.query(User).filter(User.id==id).first()
@@ -27,6 +34,12 @@ class UsersData:
         session.close()
         return user
     
+    def findUserByNameNoAdmin(self,name):
+        session=makeSession()
+        user=session.query(User).filter(User.name.like('%'+name+'%')).filter(User.admin==False).all()
+        session.close()
+        return user
+
     def addUser(self,user):
         session=makeSession()
         session.add(user)

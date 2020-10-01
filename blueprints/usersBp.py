@@ -8,7 +8,11 @@ usersBlueprint = Blueprint("users",__name__)
 #GET
 @usersBlueprint.route("/", methods=['GET'])
 def getUsers():
-    users=usersData.getAllUsers()
+    users=[]
+    if(g.user["admin"]):
+        usersData.getAllUsers()
+    else:
+        usersData.getAllUsersNoAdmin()
     json=iterableModelToJson(users)
     return json
 
@@ -28,7 +32,11 @@ def getUserById(id):
 
 @usersBlueprint.route("/find/<term>", methods=['GET'])
 def findUserByName(term):
-    users=usersData.findUserByName(term)
+    users=[]
+    if(g.user["admin"]):
+        users=usersData.findUserByName(term)
+    else:
+        users=usersData.findUserByNameNoAdmin(term)
     json=iterableModelToJson(users)
     return json
 
