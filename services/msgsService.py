@@ -32,6 +32,8 @@ class MessagingService:
         for participant in participants:
             try:
                 session=self.sessionByUser[participant.user]
+                print(participant.user)
+                print(session)
                 if(session):
                     emit('message',message,room=session)
             except:
