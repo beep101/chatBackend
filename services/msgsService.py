@@ -31,7 +31,7 @@ class MessagingService:
     def __notifyMessage(self,participants,message):
         for participant in participants:
             try:
-                session=self.sessionByUser.[participant.user]
+                session=self.sessionByUser[participant.user]
                 if(session):
                     emit('message',message,room=session)
             except:
