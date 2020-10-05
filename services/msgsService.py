@@ -17,7 +17,7 @@ class MessagingService:
         else:
             userId=g.user["id"]
 
-        if(userId==-1)
+        if(userId==-1):
             return False
 
         conv= self.convsData.getConvById(int(request['convId']))
