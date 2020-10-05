@@ -24,7 +24,7 @@ class MessagingService:
         for participant in conv.participants:
             if(participant.user==userId):
                 msgNum=self.msgsData.addMsg(int(request['convId']),userId,request['message'])
-                self.__notifyMessage(conv.participants,{'convId':int(request['convId']),'msgNum':msgNum,'userId':userId,'message':request['message']})
+                self.__notifyMessage(conv.participants,{'convId':int(request['convId']),'msgNum':msgNum,'user':userId,'message':request['message']})
                 return True
         return False
 
