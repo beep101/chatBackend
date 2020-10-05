@@ -11,16 +11,20 @@ class MessagingService:
         self.msgsData=msgsData
 
     def addMessage(self,request,sesssionId):
-        if(sesssionId):
+        userId=-1
+        if(sesssionId!=None):
             userId=self.userBySession[sesssionId]
         else:
             userId=g.user["id"]
-        conv= self.convsData.getConvById(int(request['convId']))
 
+        if(userId==-1)
+            return False
+
+        conv= self.convsData.getConvById(int(request['convId']))
         for participant in conv.participants:
             if(participant.user==userId):
-                self.msgsData.addMsg(int(request['convId']),userId,request['message'])
-                self.__notifyMessage(conv.participants,{'convId':int(request['convId']),'userId':userId,'message':request['message']})
+                msgNum=self.msgsData.addMsg(int(request['convId']),userId,request['message'])
+                self.__notifyMessage(conv.participants,{'convId':int(request['convId']),'msgNum':msgNum,'userId':userId,'message':request['message']})
                 return True
         return False
 
@@ -30,7 +34,7 @@ class MessagingService:
                 session=self.sessionByUser.get(participant.user,None)
                 if(session!=None):
                     emit('message',message,room=session)
-            except e:
+            except:
                 pass
 
     def addUser(self,userId,sessionId):

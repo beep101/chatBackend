@@ -32,6 +32,7 @@ class MsgsData:
             'user':userId,
             'msg':msgText
         })
+        return msgNum
 
     def modMsg(self, convId, msgId, msgText):
         pass
