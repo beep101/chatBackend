@@ -25,14 +25,14 @@ class MessagingService:
             if(participant.user==userId):
                 msgNum=self.msgsData.addMsg(int(request['convId']),userId,request['message'])
                 self.__notifyMessage(conv.participants,{'convId':int(request['convId']),'msgNum':msgNum,'userId':userId,'message':request['message']})
-                return self.sessionByUser
+                return True
         return False
 
     def __notifyMessage(self,participants,message):
         for participant in participants:
             try:
-                session=self.sessionByUser.get(participant.user,None)
-                if(session!=None):
+                session=self.sessionByUser.[participant.user]
+                if(session):
                     emit('message',message,room=session)
             except:
                 pass
