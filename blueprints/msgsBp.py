@@ -13,8 +13,9 @@ def decimal_default(obj):
 
 @msgsBlueprint.route("/",methods=['POST'])
 def addMsg():
-    if(msgsService.addMessage(request.json,None)):
-        return "Success"
+    res=msgsService.addMessage(request.json,None)
+    if(res):
+        return res
     else:
         return "Error", 400
 
