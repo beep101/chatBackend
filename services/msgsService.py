@@ -35,6 +35,7 @@ class MessagingService:
                 print(participant.user)
                 print(session)
                 if(session):
+                    print("***")
                     emit('message',message,room=session)
             except:
                 pass
